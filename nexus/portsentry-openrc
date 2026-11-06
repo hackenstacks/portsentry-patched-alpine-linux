@@ -2,18 +2,11 @@
 description="PortSentry port scan detector"
 
 command="/usr/sbin/portsentry"
-command_args="--stealth -l"
+command_args="--stealth -m raw -l syslog"
 command_background=true
 pidfile="/run/portsentry.pid"
-output_log="/var/log/portsentry.log"
-error_log="/var/log/portsentry.log"
 
 depend() {
     need net
     after firewall
-}
-
-start_pre() {
-    touch /var/log/portsentry.log
-    chmod 640 /var/log/portsentry.log
 }
